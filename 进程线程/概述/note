@@ -1,0 +1,37 @@
+并发编程
+
+线程
+    -多线程开发
+    -线程安全
+    -线程锁
+    -死锁
+    -线程池
+
+进程
+协程
+
+def func(a1,a2,a3):
+    pass
+
+线程
+import threading#python本地库，不需要安装
+t= threading.Thread(target=func,args=(a1,a2,a3))
+t.start()
+
+进程
+import multiprocessing#python本地库，不需要安装
+if __name__ == '__main__':
+’‘’
+基于不同的系统：
+Linux-fork win-spawn mac支持fork和spawn
+python3默认为spawn，所以需要if __name__ == '__main__'
+如果不想要这一步骤在导入库之后设置
+multiprocessing.set_start_method('fork')
+
+‘’‘
+    t = multiprocessing.Process(target=task,args=(a1,a2,a3))
+    t.start()
+
+
+发现多进程比多线程开销大，是否使用多线程比使用多进程好呢？？
+    -引入GIL锁
