@@ -1,0 +1,27 @@
+问题引入：线程是不是越多越好？
+    在程序里，不是线程越多越好，有时越多反而会降低执行效率
+        -原因，线程之间切换会耗时
+
+因此线程数量要有节制-线程池
+from concurrent.futures import ThreadPoolExecutor #导入本地库
+pool = ThreadPoolExecutor(100)#创建线程池，最多100个线程
+pool.submit(函数名,参数1,参数2,参数...)#给线程池安排任务【如果函数里面有返回值return,可以用变量a接收该对象，是一个对象【值：a.result()】再干其他事】
+#在线程池中提交一个任务，线程池里面有空闲线程，就分配一个去执行，执行完后将线程交还给线程池，如果没有空闲的线程就等待
+pool.shutdown(True) #等待线程池中的任务执行完成后再继续执行类似于t.join()
+
+
+执行完任务还可以做点其他事【作用：可以做分工例如task函数专门下载，done函数专门将下载的数据写入本地文件】
+如果函数task里面有返回值return,可以用变量future接收该对象，是一个对象【值：future.result()】，再干其他事:如再去执行一个函数或简单操作
+# future = pool.submit(task函数,参数)
+第一种执行函数
+# future.add_done_callback(done)
+    #再去执行【利用task返回值的】回调函数done(参数【这个参数就是返回值对象】只有一个参数)
+    如果回调函数done里需要多个参数，可以采用闭包的形式
+        def outer(其余参数)：
+            def done(参数)
+                pass
+            return done
+第二种：执行简单操作
+# future_list.append(future.result())#执行简单任务
+
+案例：下载图片并保存到本地
