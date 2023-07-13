@@ -24,7 +24,7 @@ class Human:
     lock = threading.RLock()
     def __new__(cls, *args, **kwargs):##重载object内部自带的__new__,cls接收当前类
 
-        if cls.instance:
+        if cls.instance:#这个是后续为了再创建对象提高效率，不用再执行下面锁的管理以及判断【这段代码更好的优化了代码】
             return cls.instance
 
         with cls.lock:
