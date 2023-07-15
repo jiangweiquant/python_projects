@@ -28,3 +28,7 @@ ret1 = obj.findall(字符串)
 ret2 = obj.finditer/search/match(字符串)
 
 (?P<自定义名字>正则表达式) 可以单独从正则匹配到的内容中进一步提取内容
+
+
+案例：
+    豆瓣top250电影排行
