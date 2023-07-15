@@ -1,0 +1,32 @@
+多进程开发
+
+进程是计算机资源分配的最小单位，一个进程里可有多个线程，同一个进程中的线程资源共享
+进程与进程之间相互隔离
+多进程 cpu多核优势  计算密集型
+
+三大模式：
+    fork ['拷贝'几乎所有资源,也支持传参【支持文件对象/线程锁等】]
+        -fork模式在Unix/Linux系统上可用，但在Windows系统上不支持
+
+    spawn[只要一些必要资源，这些资源还需手动通过传参方式传递【不支持文件对象/线程锁等】]
+        -unix,windows
+    forkserver【和spawn类似】
+        -部分unix
+
+
+常用方法
+    start join daemon  进程名字设置获取 自定义进程类 cup个数 .cpu_count()【创建进程个数】
+    进程名字设置获取
+    p.name = ''
+    -multiprocessing.current_process().name 获取进程名字
+    vs线程名字设置和获取
+    -t = threading.Thread(target=task, name='日莫-{}'.format(i)) 在创建对象是创建线程名字
+    -threading.current_thread().name 获取线程名字
+
+    #cpu个数
+    count = multiprocessing.cpu_count()
+    for i in range(count-1):#有一个主进程
+        p = multiprocessing.Process()
+
+进程之间数据共享
+进程之间各自维护自己独立的数据，不共享
