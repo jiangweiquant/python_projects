@@ -20,6 +20,7 @@ for i in result:
     # print(i.group('nums'))
     dict = i.groupdict()
     dict['year'] = dict['year'].strip()
+    print(dict.values())
     csvwriter.writerow(dict.values())
 f.close()
 print('over')
