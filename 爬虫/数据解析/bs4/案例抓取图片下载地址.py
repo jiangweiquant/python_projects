@@ -26,7 +26,7 @@ for href in href_list:
     #下载图片
     img_resp = requests.get(src)
     img_name = src.split('/')[-1]
-    with open('imgs/'+img_name,'w',encoding='utf-8') as file:
-        file.write(img_resp.text)#图片内容写入文档
+    with open('imgs/'+img_name,'wb') as file:
+        file.write(img_resp.content)#图片内容写入文档
     print('over',img_name)
 print('all over')
