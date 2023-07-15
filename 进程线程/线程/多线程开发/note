@@ -1,0 +1,22 @@
+进程，线程如何选择：
+    进程
+        -并行，利用的是CPU多核优势
+        适用于计算密集型
+
+    线程
+        -并发
+        适用于IO密集型，如文件读写，网络数据传输
+
+CIL锁
+    -概念：
+    Global Interpreter Lock 全局解释器锁
+    让一个进程中同一时刻只有一个线程可以被CPU调用
+
+
+线程中常见方法
+    -t.start()
+    -t.join() #主线程在某个地方等待子线程
+    -t.daemon = True/False #主线程执行完后是否等待子线程或者直接终止子线程。默认主线程执行完后会等待子线程执行完后再终止程序
+    -threading.current_thread().name 获取线程名字
+    -t = threading.Thread(target=task, name='日莫-{}'.format(i)) 在创建对象是创建线程名字
+    -自定义线程类继承threading.Thread.直接将线程要做的是封装成函数写在里面，创建一个对象t，再t.start即可
