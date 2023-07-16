@@ -8,7 +8,7 @@
     fork ['拷贝'几乎所有资源,也支持传参【支持文件对象/线程锁等】]
         -fork模式在Unix/Linux系统上可用，但在Windows系统上不支持
 
-    spawn[只要一些必要资源，这些资源还需手动通过传参方式传递【不支持文件对象/线程锁等】]
+    spawn[只要一些必要资源，这些资源还需手动通过传参方式传递【不支持文件对象/线程锁等,进程锁支持】]
         -unix,windows
     forkserver【和spawn类似】
         -部分unix
@@ -30,3 +30,26 @@
 
 进程之间数据共享
 进程之间各自维护自己独立的数据，不共享
+    1、Value,Array了解
+    from multiprocessing import Process,Value,Array
+    2、Manager
+    from multiprocessing import Process,Manager
+    with Manager() as manager上下文管理
+    3、队列Queue
+    4、Pipe
+其中Manager和队列Queue较为常用
+
+进程锁【进程之间共享资源时抢占资源，这是用到进程锁  进程间数据共享 --> 进程锁】Queue和Pipe不会出现数据混乱
+-创建锁
+    lock = multiprocessing.RLock()
+-锁进行传递,子进程也用这把锁
+    p = multiprocessing.Process(target=task,args=(lock,))
+-锁的申请和释放
+    def task(lock):
+        lock.acquire()
+
+        lock.release()
+
+进程池-与线程池极其相似，注意一点不同，再接着做事时done是由主进程去执行的
+
+进程池里面资源共享时，创建锁。不能使用 lock = multiprocessing.RLock()，用Manager里面的Rlock/lock
