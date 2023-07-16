@@ -1,4 +1,8 @@
 xpath解析：最常用最便捷高效的一种解析方式。通用性
+HTML是XML的一个自己
+
+节点
+
 xpath解析原理
     -1、实例化一个etree的对象，并且将要被解析的页面源码数据加载到该对象中
     -2、调用etree对象中的xpath方法结合xpath表达方式实现标签的定位和内容的捕获。
@@ -11,7 +15,7 @@ xpath表达式
 
        返回的是列表[<Element li at 0x1e74d5acd88>, <Element li at 0x1e74d5acdc8>, <Element li at 0x1e74d5ace48>]
 
-属性定位  tree.xpath('//div[@class="song"]')  tag[@attrName='attrValue']
+属性定位  tree.xpath('//div[@class="song" ]')  标签[@attrName='attrValue']
 索引定位  tree.xpath('//div[@class="song"]/p[3]')  索引从1开始，不是0
 
 定位好之后，取文本和属性
@@ -23,3 +27,9 @@ xpath表达式
     -取属性
     /@attrName
     tree.xpath('//img/@src')  -->img/src
+
+    相对查找 xpath('./li')
+
+    在浏览器中可以复制xpath路径
+    检查-元素—复制
+
