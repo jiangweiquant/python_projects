@@ -1,0 +1,30 @@
+io等待，一个线程执行，遇到IO阻塞，自动切换到另一个函数去执行
+线程利用率更高
+异步
+
+协程不是计算机提供，程序员人为创造
+
+实现协程的几种方法：
+1、greenlet(较早期) 手动调换方式（switch方法）
+2、yield关键字【了解即可】
+3、asyncio装饰器（标准库）
+4、async、await关键字（推荐）
+
+greenlet实现协程
+gr1 = greenlet(func1)
+gr1.switch()
+
+协程函数
+async def func():
+    pass
+协程对象 result = func() #内部代码不会执行，只是创建了协程对象
+asyncio.run(result)#运行协程函数内部代码
+
+await关键字
+await +可等待对象(协程对象、Future、Task对象)
+await就是等待得到对应的值之后在继续向下走
+
+Task对象
+添加多个任务放在事件循环里去做切换
+asyncio.create_task(协程对象)#3.7版本以上，之前可用asyncio.ensure_future (协程对象)
+
