@@ -1,0 +1,23 @@
+1、模拟浏览器登录 -> 处理cookie
+2、防盗链处理 -> 抓取梨视频数据
+3、代理 -> 防止被封ip
+
+cookie处理：
+1、方法一：建立会话session
+#登录
+登录url
+#访问书架url
+2、方法二直接请求,在headers里面放入cookie
+headers={'Cookie':''}
+request.get(书架url,headers=headers)
+
+防盗链处理
+    防盗链【溯源:当前请求的上一级是谁url】
+    headers = {'Referer':  url}
+
+代理【不推荐，法律风险】
+找免费代理
+proxies = {
+    'https':'https://113.78.190.20:1111'
+}
+requests.get(url, proxies=proxies)
