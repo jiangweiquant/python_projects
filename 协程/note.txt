@@ -28,3 +28,4 @@ Task对象
 添加多个任务放在事件循环里去做切换
 asyncio.create_task(协程对象)#3.7版本以上，之前可用asyncio.ensure_future (协程对象)
 
+Future对象
