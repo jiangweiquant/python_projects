@@ -1,0 +1,24 @@
+pip install selenium
+下载浏览器驱动
+https://sites.google.com/chromium.org/driver/?pli=1
+将驱动放在python解释器下chromedriver.exe
+
+
+1、创建浏览器对象
+2、打开网址
+web = webdriver.Chrome()#创建浏览器对象
+web.get(url) #打开一个网址
+3、查找元素
+web.find_element()/web.find_elements()
+4、内容或执行动作
+.text/.click()
+
+窗口切换
+    1、
+    web.switch_to.window(web.window_handles[-1])
+    2、 关掉子窗口，变更窗口回到原窗口
+    web.close()
+    web.switch_to.window(web.window_handles[0])
+遇到iframe
+switch_to.frame()方法将WebDriver切换到iframe的上下文，以便在iframe中执行操作。
+完成操作后，可以使用switch_to.default_content()将WebDriver切换回主页面的上下文
