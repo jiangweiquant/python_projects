@@ -1,0 +1,2 @@
+requests.get() 同步 -> 异步操作aiohttp
+
